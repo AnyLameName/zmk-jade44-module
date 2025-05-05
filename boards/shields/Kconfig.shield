@@ -1,0 +1,8 @@
+# Copyright (c) 2025 Jay Gagnon
+# SPDX-License-Identifier: MIT
+
+config SHIELD_JADE44_LEFT
+    def_bool $(shields_list_contains,jade44_left)
+
+config SHIELD_JADE44_RIGHT
+    def_bool $(shields_list_contains,jade44_right)

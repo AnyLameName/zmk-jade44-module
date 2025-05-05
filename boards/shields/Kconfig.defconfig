@@ -1,0 +1,12 @@
+if SHIELD_JADE44_LEFT
+  config ZMK_KEYBOARD_NAME
+    default "Jade 44"
+
+  config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+endif
+
+if SHIELD_JADE44_LEFT || SHIELD_JADE44_RIGHT
+  config ZMK_SPLIT
+    default y
+endif

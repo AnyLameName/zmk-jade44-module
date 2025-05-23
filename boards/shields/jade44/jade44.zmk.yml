@@ -4,7 +4,6 @@ name: Jade44
 type: shield
 url: https://github.com/AnyLameName/zmk-jade44-module/
 requires: [pro_micro]
-exposes: [i2d_oled]
 features:
   - keys
 siblings:

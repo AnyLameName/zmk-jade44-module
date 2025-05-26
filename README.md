@@ -1,11 +1,7 @@
-# ZMK Module Template
+# Jade44 - A ZMK Keyboard Module
 
-This repository contains a template for a ZMK module, as it would most frequently be used. 
+The Jade44 keyboard is a bespoke keyboard, designed for a userbase of one. 
+This repository contains a module for the [ZMK Firmware](https://zmk.dev/) Project that will enable you to build
+a firmware for the Jade44.
 
-## Usage
-
-Read through the [ZMK Module Creation](https://zmk.dev/docs/development/module-creation) page for details on how to configure this template.
-
-## More Info
-
-For more info on modules, you can read through  through the [Zephyr modules page](https://docs.zephyrproject.org/3.5.0/develop/modules.html) and [ZMK's page on using modules](https://zmk.dev/docs/features/modules). [Zephyr's west manifest page](https://docs.zephyrproject.org/3.5.0/develop/west/manifest.html#west-manifests) may also be of use.
+It also defines a GitHub Actions Workflow that will automatically build the firmware when a change is pushed.

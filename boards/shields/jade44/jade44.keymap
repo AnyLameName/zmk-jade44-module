@@ -7,8 +7,8 @@
 
     default_layer {
       bindings = <
-        &kp W    &kp E    &kp R            &kp U    &kp I    &kp O
-        &kp S    &kp D    &bt BT_CLR       &kp J    &kp K    &kp L
+        &kp W &kp E  &kp R        &kp U    &kp I    &kp O
+        &kp S &kp D  &bt BT_CLR        &kp J    &kp K    &kp L
       >;
     };
   };

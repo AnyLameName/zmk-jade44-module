@@ -12,8 +12,8 @@
       display-name = "Base";
 
       bindings = <
-        &kp W    &kp E    &kp R             &kp U    &kp I    &kp O
-        &kp S    &kp D    &mo LOWER         &kp J    &kp K    &kp L
+        &kp W        &kp E    &kp R             &kp U    &kp I    &kp O
+        &kp S        &kp D    &mo LOWER         &kp J    &kp K    &kp L
       >;
     };
 
@@ -21,8 +21,8 @@
       display-name = "Lower";
 
       bindings = <
-        &kp Q    &trans   &trans            &trans   &trans   &trans
-        &trans   &trans   &trans            &trans   &trans   &trans
+        &bt BT_CLR   &trans   &trans            &trans   &trans   &trans
+        &trans       &trans   &trans            &trans   &trans   &trans
       >;
     };
   };

@@ -1,0 +1,218 @@
+meta:
+  engine: 4.1.0
+units:
+  kx: cx
+  ky: cy
+  px: kx + 5
+  py: ky + 4
+points:
+  key.tags:
+    - keys
+  zones:
+    matrix:
+      anchor.shift: [100, -150]
+      rotate: 3
+      columns:
+        outer:
+        pinky:
+          key.stagger: 3
+        ring:
+          key.origin: [-200, -20]
+          key.splay: -3
+          key.stagger: 12
+        middle:
+          key.stagger: 5
+        index:
+          key.stagger: -6
+        inner:
+          key.stagger: -2
+      rows:
+        bottom:
+        home:
+        top:
+    thumbfan:
+      anchor:
+        ref: matrix_inner_bottom
+        shift: [-2*(kx+1), -ky]
+      columns:
+        one:
+        two:
+        three:
+          key.spread: 21.25
+          key.splay: -28
+          key.origin: [-11.75, -9]
+        four:
+          key.spread: 21.25
+          key.splay: -28
+          key.origin: [-9.5, -9]
+      rows:
+        thumb:
+    mcu:
+      key.tags:
+        - helper
+      anchor:
+        - ref: matrix_inner_top
+          shift: [u/2+18/2+1.6,u/2-33/2]
+    display:
+      key.tags:
+        - helper
+      anchor:
+        - ref: mcu
+          shift: [0,-3.5]     
+outlines:
+  _keys:
+    - what: rectangle
+      where: [keys]
+      size: [px, py]
+  _keycaps:
+    - what: rectangle
+      where: [keys]
+      size: [cx, cy]
+      fillet: 3
+  _thumbfan_filler:
+    - what: polygon
+      points:
+        - ref: thumbfan_one_thumb
+          shift: [-0.5px, -0.5py]
+        - ref: matrix_outer_bottom
+          shift: [-0.5px, -0.5py]
+        - ref: matrix_outer_bottom
+        - ref: matrix_index_bottom
+        - ref: thumbfan_three_thumb
+          shift: [0.5px, 0.5py]
+  _mcu_filler:
+    - what: polygon
+      points:
+        - ref: matrix_inner_top
+          shift: [0.5px, 0.5py]
+        - ref: matrix_inner_top
+          shift: [30, 0.5py]
+        - ref: matrix_inner_top
+          shift: [30, -4py]
+        - ref: thumbfan_four_thumb
+          shift: [-0.5px, -0.5py]
+        - ref: thumbfan_three_thumb
+          shift: [-0.5px, -0.5py]
+  _board:
+    - what: outline
+      name: _keys
+    - what: outline
+      name: _thumbfan_filler
+      operation: add
+    - what: outline
+      name: _mcu_filler
+      operation: add
+  _mcu:
+    - what: rectangle
+      where: [mcu]
+      size: [17.78,33]
+      fillet: 1
+    - what: rectangle
+      where: [mcu]
+      size: [8.94,7.35]
+      fillet: 0.1
+      operation: stack
+      adjust:
+        shift: [0,33/2-7.35/2+0.7]
+  _display:
+    - what: rectangle
+      where: [display]
+      size: [14,36]
+      fillet: 0.5
+    - what: rectangle
+      where: [display]
+      size: [12.82,2.66]
+      operation: stack
+      fillet: 0.1
+      adjust:
+        shift: [0,-16.7]
+    - what: rectangle
+      where: [display]
+      size: [10.8,24.6]
+      operation: stack
+      adjust:
+        shift: [0,-0.75]
+  _mcu_cluster:
+    - what: outline
+      name: _mcu
+      operation: stack
+    - what: outline
+      name: _display
+      operation: stack
+  preview:
+    - what: outline
+      name: _keycaps
+    - what: outline
+      name: _board
+      operation: stack
+    - what: outline
+      name: _mcu_cluster
+      operation: stack  
+pcbs:
+  jade:
+    template: kicad8
+    outlines.main.outline: _board
+    footprints:
+      keys:
+        what: ceoloide/switch_choc_v1_v2
+        where: [keys]
+        params:
+          choc_v1_support: false
+          include_plated_holes: false
+          include_stabilizer_pad: false
+          from: from
+          to: to
+          hotswap: true
+          solder: false
+          reversible: true
+        adjust:
+          rotate: 180
+      diodes:
+        what: ceoloide/diode_tht_sod123
+        where: /key/
+        params:
+          from: "{{colrow}}"
+          to: "{{row}}"
+        adjust:
+          shift: [5.7, 0]
+          rotate: 180
+      controller:
+        what: ceoloide/mcu_nice_nano
+        where:
+          ref: mcu
+        params:
+          reversible: true
+          reverse_mount: true
+      display:
+        what: ceoloide/display_nice_view
+        where: display
+        params:
+          reversible: true
+          invert_jumpers_position: true
+          MOSI: "DA"
+          SCK: "CL"
+      power_switch:
+        what: ceoloide/power_switch_smd_side
+        where: matrix_inner_top
+        params:
+          reversible: true
+        adjust:
+          rotate: 90
+          shift: [0, 0.5py - 2]
+      battery_connector:
+        what: ceoloide/battery_connector_jst_ph_2
+        where: mcu
+        params:
+          reversible: true
+          side: B
+        adjust:
+          shift: [1.5, -35]
+          rotate: -90
+      reset_switch:
+        what: ceoloide/reset_switch_tht_top
+        where: mcu
+        params:
+          reversible: true
+        adjust:
+          shift: [6.75,-35]
+          rotate: 90

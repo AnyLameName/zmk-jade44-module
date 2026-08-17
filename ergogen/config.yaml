@@ -149,7 +149,7 @@ outlines:
       name: _mcu_cluster
       operation: stack  
 pcbs:
-  jade:
+  jade44:
     template: kicad8
     outlines.main.outline: _board
     footprints:
@@ -174,8 +174,9 @@ pcbs:
           from: "{{colrow}}"
           to: "{{row}}"
           include_tht: true
+          reversible: true
         adjust:
-          shift: [5.7, 0]
+          shift: [0, 4]
           rotate: 180
       controller:
         what: ceoloide/mcu_nice_nano

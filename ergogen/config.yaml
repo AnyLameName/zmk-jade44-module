@@ -173,6 +173,7 @@ pcbs:
         params:
           from: "{{colrow}}"
           to: "{{row}}"
+          include_tht: true
         adjust:
           shift: [5.7, 0]
           rotate: 180

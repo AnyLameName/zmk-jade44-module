@@ -176,7 +176,7 @@ pcbs:
           include_tht: true
           reversible: true
         adjust:
-          shift: [0, 4]
+          shift: [0, -9.25]
           rotate: 180
       controller:
         what: ceoloide/mcu_nice_nano

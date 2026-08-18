@@ -6,10 +6,10 @@ units:
   px: kx + 5
   py: ky + 4
 points:
-  key.tags:
-    - keys
   zones:
     matrix:
+      key.tags:
+        - keys
       anchor.shift: [100, -150]
       rotate: 3
       columns:
@@ -31,6 +31,8 @@ points:
         home:
         top:
     thumbfan:
+      key.tags:
+        - thumb_keys
       anchor:
         ref: matrix_inner_bottom
         shift: [-2*(kx+1), -ky]
@@ -62,11 +64,11 @@ points:
 outlines:
   _keys:
     - what: rectangle
-      where: [keys]
+      where: [keys, thumb_keys]
       size: [px, py]
   _keycaps:
     - what: rectangle
-      where: [keys]
+      where: [keys, thumb_keys]
       size: [cx, cy]
       fillet: 3
   _thumbfan_filler:
@@ -153,10 +155,10 @@ pcbs:
     template: kicad8
     outlines.main.outline: _board
     footprints:
-      keys:
+      matrix_keys:
         what: ceoloide/switch_choc_v1_v2
         where: [keys]
-        params:
+        params: &switches
           choc_v1_support: false
           include_plated_holes: false
           include_stabilizer_pad: false
@@ -165,19 +167,37 @@ pcbs:
           hotswap: true
           solder: false
           reversible: true
+          switch_3dmodel_filename: '/home/jay/src/keyswitch_model/choc/v2/KiCad/lofree/wizard.step'
+          switch_3dmodel_xyz_rotation: [0, 180, 0]
+          switch_3dmodel_xyz_offset: [0, 0, -1.5]
+          hotswap_3dmodel_filename: '/home/jay/src/keyswitch_model/socket/KiCad/choc.step'
+          hotswap_3dmodel_xyz_rotation: [0, 180, 0]
+          hotswap_3dmodel_xyz_offset: [0, -6, 1.5]
         adjust:
           rotate: 180
-      diodes:
-        what: ceoloide/diode_tht_sod123
-        where: /key/
+      thumb_keys:
+        what: ceoloide/switch_choc_v1_v2
+        where: [thumb_keys]
         params:
+          <<: *switches
+      diodes_for_matrix_keys:
+        what: ceoloide/diode_tht_sod123
+        where: [keys]
+        params: &diodes
           from: "{{colrow}}"
           to: "{{row}}"
           include_tht: true
           reversible: true
         adjust:
-          shift: [0, -9.25]
+          shift: [0, -9.5]
           rotate: 180
+      diodes_for_thumb_keys:
+        what: ceoloide/diode_tht_sod123
+        where: [thumb_keys]
+        params:
+          <<: *diodes
+        adjust:
+          shift: [0, -8.0]
       controller:
         what: ceoloide/mcu_nice_nano
         where:
@@ -185,6 +205,7 @@ pcbs:
         params:
           reversible: true
           reverse_mount: true
+          mcu_3dmodel_filename: '/home/jay/src/kb_ergogen_fp/3d_models/Nice_Nano_V2.step'
       display:
         what: ceoloide/display_nice_view
         where: display

@@ -60,7 +60,46 @@ points:
         - helper
       anchor:
         - ref: mcu
-          shift: [0,-3.5]     
+          shift: [0,-3.5]
+    screw_hole_1:
+      key.tags:
+        - screw_hole
+      anchor:
+        aggregate.parts:
+          - ref: matrix_C1_R2
+          - ref: matrix_C2_R3
+        shift: [0, -3]
+    screw_hole_2:
+      key.tags:
+        - screw_hole
+      anchor:
+        aggregate.parts:
+          - ref: matrix_C1_R1
+          - ref: matrix_C2_R1
+        shift: [0, -10]
+    screw_hole_3:
+      key.tags:
+        - screw_hole
+      anchor:
+        aggregate.parts:
+          - ref: matrix_C5_R2
+          - ref: matrix_C6_R3
+        shift: [0, -5]
+    screw_hole_4:
+      key.tags:
+        - screw_hole
+      anchor:
+        aggregate.parts:
+          - ref: matrix_C5_R1
+          - ref: thumbfan_C1_RT
+    screw_hole_5:
+      key.tags:
+        - screw_hole
+      anchor:
+        aggregate.parts:
+          - ref: matrix_C6_R1
+          - ref: thumbfan_C3_RT
+        shift: [20, 0]
 outlines:
   _keys:
     - what: rectangle
@@ -149,7 +188,7 @@ outlines:
       operation: stack
     - what: outline
       name: _mcu_cluster
-      operation: stack  
+      operation: stack 
 pcbs:
   jade44:
     template: kicad8
@@ -239,6 +278,7 @@ pcbs:
         what: ceoloide/power_switch_smd_side
         where: matrix_C6_R3
         params:
+          side: B
           reversible: true
         adjust:
           rotate: 90
@@ -256,7 +296,14 @@ pcbs:
         what: ceoloide/reset_switch_tht_top
         where: mcu
         params:
+          side: B
           reversible: true
         adjust:
           shift: [6.75,-35]
           rotate: 90
+      m2_screws:
+        what: ceoloide/mounting_hole_npth
+        where: [screw_hole]
+        params:
+          hole_size: 4.6
+          hole_drill: 2.2

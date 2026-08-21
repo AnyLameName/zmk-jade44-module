@@ -162,8 +162,8 @@ pcbs:
           choc_v1_support: false
           include_plated_holes: false
           include_stabilizer_pad: false
-          from: from
-          to: to
+          from: "{{colrow}}"
+          to: "{{col.name}}"
           hotswap: true
           solder: false
           reversible: true
@@ -206,14 +206,34 @@ pcbs:
           reversible: true
           reverse_mount: true
           mcu_3dmodel_filename: '/home/jay/src/kb_ergogen_fp/3d_models/Nice_Nano_V2.step'
+          # Pin names are Arduino pin names, not the MCU pin names.
+          # For example, "P2" here refers to the pin labeled "D2" on the board in Arduino terms, 
+          # which is P0.17 in Nice Nano V2 terms.
+          P1: CS
+          P2: MOSI
+          P3: SCK
+          # Four rows, six columns.
+          P4: R.T
+          P5: R.M
+          P6: R.B
+          P7: R.U
+          P21: C.1
+          P20: C.2
+          P19: C.3
+          P18: C.4
+          P15: C.5
+          P14: C.6
+          # Unused pins.
+          P0: NC
+          P8: NC
+          P9: NC
+          P10: NC
+          P16: NC
       display:
         what: ceoloide/display_nice_view
         where: display
         params:
           reversible: true
-          invert_jumpers_position: true
-          MOSI: "DA"
-          SCK: "CL"
       power_switch:
         what: ceoloide/power_switch_smd_side
         where: matrix_inner_top

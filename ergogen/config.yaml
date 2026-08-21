@@ -237,7 +237,7 @@ pcbs:
           reversible: true
       power_switch:
         what: ceoloide/power_switch_smd_side
-        where: matrix_inner_top
+        where: matrix_C6_R3
         params:
           reversible: true
         adjust:

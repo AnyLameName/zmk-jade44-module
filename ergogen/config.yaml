@@ -13,47 +13,47 @@ points:
       anchor.shift: [100, -150]
       rotate: 3
       columns:
-        outer:
-        pinky:
+        C1:
+        C2:
           key.stagger: 3
-        ring:
+        C3:
           key.origin: [-200, -20]
           key.splay: -3
           key.stagger: 12
-        middle:
+        C4:
           key.stagger: 5
-        index:
+        C5:
           key.stagger: -6
-        inner:
+        C6:
           key.stagger: -2
       rows:
-        bottom:
-        home:
-        top:
+        R1:
+        R2:
+        R3:
     thumbfan:
       key.tags:
         - thumb_keys
       anchor:
-        ref: matrix_inner_bottom
+        ref: matrix_C6_R1
         shift: [-2*(kx+1), -ky]
       columns:
-        one:
-        two:
-        three:
+        C1:
+        C2:
+        C3:
           key.spread: 21.25
           key.splay: -28
           key.origin: [-11.75, -9]
-        four:
+        C4:
           key.spread: 21.25
           key.splay: -28
           key.origin: [-9.5, -9]
       rows:
-        thumb:
+        RT:
     mcu:
       key.tags:
         - helper
       anchor:
-        - ref: matrix_inner_top
+        - ref: matrix_C6_R3
           shift: [u/2+18/2+1.6,u/2-33/2]
     display:
       key.tags:
@@ -74,26 +74,26 @@ outlines:
   _thumbfan_filler:
     - what: polygon
       points:
-        - ref: thumbfan_one_thumb
+        - ref: thumbfan_C1_RT
           shift: [-0.5px, -0.5py]
-        - ref: matrix_outer_bottom
+        - ref: matrix_C1_R1
           shift: [-0.5px, -0.5py]
-        - ref: matrix_outer_bottom
-        - ref: matrix_index_bottom
-        - ref: thumbfan_three_thumb
+        - ref: matrix_C1_R1
+        - ref: matrix_C5_R1
+        - ref: thumbfan_C3_RT
           shift: [0.5px, 0.5py]
   _mcu_filler:
     - what: polygon
       points:
-        - ref: matrix_inner_top
+        - ref: matrix_C6_R3
           shift: [0.5px, 0.5py]
-        - ref: matrix_inner_top
+        - ref: matrix_C6_R3
           shift: [30, 0.5py]
-        - ref: matrix_inner_top
+        - ref: matrix_C6_R3
           shift: [30, -4py]
-        - ref: thumbfan_four_thumb
+        - ref: thumbfan_C4_RT
           shift: [-0.5px, -0.5py]
-        - ref: thumbfan_three_thumb
+        - ref: thumbfan_C3_RT
           shift: [-0.5px, -0.5py]
   _board:
     - what: outline
@@ -197,6 +197,7 @@ pcbs:
         params:
           <<: *diodes
         adjust:
+          rotate: 180
           shift: [0, -8.0]
       controller:
         what: ceoloide/mcu_nice_nano
@@ -213,16 +214,16 @@ pcbs:
           P2: MOSI
           P3: SCK
           # Four rows, six columns.
-          P4: R.T
-          P5: R.M
-          P6: R.B
-          P7: R.U
-          P21: C.1
-          P20: C.2
-          P19: C.3
-          P18: C.4
-          P15: C.5
-          P14: C.6
+          P4: R3
+          P5: R2
+          P6: R1
+          P7: RT
+          P21: C1
+          P20: C2
+          P19: C3
+          P18: C4
+          P15: C5
+          P14: C6
           # Unused pins.
           P0: NC
           P8: NC

@@ -37,13 +37,13 @@ points:
         ref: matrix_C6_R1
         shift: [-2*(kx+1), -ky]
       columns:
-        C1:
-        C2:
         C3:
+        C4:
+        C5:
           key.spread: 21.25
           key.splay: -28
           key.origin: [-11.75, -9]
-        C4:
+        C6:
           key.spread: 21.25
           key.splay: -28
           key.origin: [-9.5, -9]
@@ -54,7 +54,7 @@ points:
         - helper
       anchor:
         - ref: matrix_C6_R3
-          shift: [u/2+18/2+1.6,u/2-33/2]
+          shift: [u/2+18/2+2.5,u/2-33/2]
     display:
       key.tags:
         - helper
@@ -91,14 +91,14 @@ points:
       anchor:
         aggregate.parts:
           - ref: matrix_C5_R1
-          - ref: thumbfan_C1_RT
+          - ref: thumbfan_C3_RT
     screw_hole_5:
       key.tags:
         - screw_hole
       anchor:
         aggregate.parts:
           - ref: matrix_C6_R1
-          - ref: thumbfan_C3_RT
+          - ref: thumbfan_C5_RT
         shift: [20, 0]
 outlines:
   _keys:
@@ -113,13 +113,13 @@ outlines:
   _thumbfan_filler:
     - what: polygon
       points:
-        - ref: thumbfan_C1_RT
+        - ref: thumbfan_C3_RT
           shift: [-0.5px, -0.5py]
         - ref: matrix_C1_R1
           shift: [-0.5px, -0.5py]
         - ref: matrix_C1_R1
         - ref: matrix_C5_R1
-        - ref: thumbfan_C3_RT
+        - ref: thumbfan_C5_RT
           shift: [0.5px, 0.5py]
   _mcu_filler:
     - what: polygon
@@ -127,12 +127,12 @@ outlines:
         - ref: matrix_C6_R3
           shift: [0.5px, 0.5py]
         - ref: matrix_C6_R3
-          shift: [30, 0.5py]
+          shift: [33, 0.5py]
         - ref: matrix_C6_R3
-          shift: [30, -4py]
-        - ref: thumbfan_C4_RT
+          shift: [33, -4py]
+        - ref: thumbfan_C6_RT
           shift: [-0.5px, -0.5py]
-        - ref: thumbfan_C3_RT
+        - ref: thumbfan_C5_RT
           shift: [-0.5px, -0.5py]
   _board:
     - what: outline
@@ -249,26 +249,29 @@ pcbs:
           # Pin names are Arduino pin names, not the MCU pin names.
           # For example, "P2" here refers to the pin labeled "D2" on the board in Arduino terms, 
           # which is P0.17 in Nice Nano V2 terms.
+          # Left side, top to bottom.
           P1: CS
+          P0: C1
+          # Two GND pins here.
           P2: MOSI
           P3: SCK
-          # Four rows, six columns.
-          P4: R3
-          P5: R2
-          P6: R1
-          P7: RT
-          P21: C1
-          P20: C2
-          P19: C3
-          P18: C4
-          P15: C5
-          P14: C6
-          # Unused pins.
-          P0: NC
-          P8: NC
-          P9: NC
+          P4: C2
+          P5: C3
+          P6: C4
+          P7: C5
+          P8: C6
+          P9: R1
+          # Right side, bottom to top.
+          # P10 and P16 are NFC pins. Skip them.
           P10: NC
           P16: NC
+          P14: R2
+          P15: R3
+          P18: RT
+          P19: NC
+          P20: NC
+          P21: NC
+          # VCC, RST, GND, and RAW follow.
       display:
         what: ceoloide/display_nice_view
         where: display
@@ -290,7 +293,7 @@ pcbs:
           reversible: true
           side: B
         adjust:
-          shift: [1.5, -35]
+          shift: [4.5, -35]
           rotate: -90
       reset_switch:
         what: ceoloide/reset_switch_tht_top
@@ -299,7 +302,7 @@ pcbs:
           side: B
           reversible: true
         adjust:
-          shift: [6.75,-35]
+          shift: [10,-35]
           rotate: 90
       m2_screws:
         what: ceoloide/mounting_hole_npth

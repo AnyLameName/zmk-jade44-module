@@ -1,5 +1,5 @@
 #include "jade44.dtsi"
 
 &default_transform {
-  col-offset = <3>;
+  col-offset = <6>;
 };

@@ -103,25 +103,37 @@ outlines:
       fillet: 1
   _board:
     - what: polygon
+      fillet: 1
       points: 
+        # Start top left the board
         - ref: matrix_C1_R3
           shift: [-px/2, py/2]
+        # Go directly to highest column  
         - ref: matrix_C4_R3
           shift: [-px/2, py/2]
-        - ref: matrix_C4_R3
-          shift: [px/2, py/2]
+        - shift: [px, 0]
+        # Frame around the MCU  
         - ref: mcu
           shift: [-10, 16.85]
-        - ref: mcu
-          shift: [10, 16.85]
-        - ref: mcu
-          shift: [10, -43]
+        - shift: [20, 0]
+        # A nice vertical edge, maybe room for an encoder?
+        - shift: [0, -69]
         - ref: thumb_fan_C6_RT
           shift: [px/2, py/2]
-        - ref: thumb_fan_C6_RT
-          shift: [px/2, -py/2]
+        - shift: [0, -py]
+        # Fancy dance around the thumb fan  
+        - aggregate:
+            parts: [thumb_fan_C5_RT, thumb_fan_C6_RT]
+          shift: [0, -py/2]
+        - aggregate: 
+            parts: [thumb_fan_C4_RT, thumb_fan_C5_RT]
+          shift: [0, -py/2]
+        - aggregate:
+            parts: [thumb_fan_C3_RT, thumb_fan_C4_RT]
+          shift: [0, -py/2]
         - ref: thumb_fan_C3_RT
           shift: [-px/2, -py/2]
+        # Finish at bottom left of board, Ergogen will close the polygon off to the first point automatically.  
         - ref: matrix_C1_R1
           shift: [-px/2, -py/2]
     - what: circle

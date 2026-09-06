@@ -3,8 +3,8 @@ meta:
 units:
   kx: cx
   ky: cy
-  px: kx + 1
-  py: ky + 1
+  px: kx + 2
+  py: ky + 2
 points:
   zones:
     matrix:
@@ -56,45 +56,43 @@ points:
       anchor:
         - ref: mcu
           shift: [0,-3.5]
+    # Screw holes start top-left and circle clockwise.      
     screw_hole_1:
       key.tags:
         - screw_hole
       anchor:
-        aggregate.parts:
-          - ref: matrix_C1_R2
-          - ref: matrix_C2_R3
-        shift: [0, -3]
+        aggregate.parts: [matrix_C1_R2, matrix_C2_R3]
+        shift: [0, -1]
     screw_hole_2:
       key.tags:
         - screw_hole
       anchor:
-        aggregate.parts:
-          - ref: matrix_C1_R1
-          - ref: matrix_C2_R1
-        shift: [0, -10]
+        aggregate.parts: [matrix_C3_R2, matrix_C4_R3]
+        shift: [0, -2]
     screw_hole_3:
       key.tags:
         - screw_hole
       anchor:
-        aggregate.parts:
-          - ref: matrix_C5_R2
-          - ref: matrix_C6_R3
-        shift: [0, -5]
+        aggregate.parts: [matrix_C5_R2, matrix_C6_R3]
+        shift: [0, -1]
     screw_hole_4:
       key.tags:
         - screw_hole
       anchor:
-        aggregate.parts:
-          - ref: matrix_C5_R1
-          - ref: thumb_fan_C3_RT
+        aggregate.parts: [thumb_fan_C5_RT, thumb_fan_C6_RT]
+        shift: [0, py/2 - 0.5]
     screw_hole_5:
       key.tags:
         - screw_hole
       anchor:
-        aggregate.parts:
-          - ref: matrix_C6_R1
-          - ref: thumb_fan_C5_RT
-        shift: [20, 0]
+        aggregate.parts: [thumb_fan_C3_RT, matrix_C5_R1]
+        shift: [0, 0]
+    screw_hole_6:
+      key.tags:
+        - screw_hole
+      anchor:
+        aggregate.parts: [matrix_C1_R2, matrix_C2_R2]
+        shift: [0, -(py/2 + 1)]
 outlines:
   _keycaps:
     - what: rectangle

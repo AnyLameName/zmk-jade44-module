@@ -109,7 +109,7 @@ outlines:
     - what: rectangle
       where: [keys, thumb_keys]
       size: [cx, cy]
-      fillet: 3
+      fillet: 1
   _thumbfan_filler:
     - what: polygon
       points:
@@ -143,6 +143,10 @@ outlines:
     - what: outline
       name: _mcu_filler
       operation: add
+    - what: circle
+      radius: 2.2
+      where: [screw_hole]
+      operation: stack
   _mcu:
     - what: rectangle
       where: [mcu]

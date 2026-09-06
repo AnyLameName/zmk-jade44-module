@@ -3,8 +3,8 @@ meta:
 units:
   kx: cx
   ky: cy
-  px: kx + 1
-  py: ky + 1
+  px: kx + 2
+  py: ky + 2
 points:
   zones:
     matrix:

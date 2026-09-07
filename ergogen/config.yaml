@@ -3,7 +3,7 @@ meta:
 units:
   kx: cx
   ky: cy
-  px: kx + 2
+  px: kx + 2.25
   py: ky + 2
 points:
   zones:
@@ -40,7 +40,7 @@ points:
         C3:
         C4.key.shift: [1, -1]
         C5.key.shift: [2, -2]
-        C6.key.shift: [3, -3]
+        C6.key.shift: [3, -2.75]
       rows:
         RT:
           splay: -6
@@ -241,6 +241,7 @@ pcbs:
           from: "{{colrow}}"
           to: "{{col.name}}"
           hotswap: true
+          hotswap_pads_same_side: true
           solder: false
           reversible: true
           switch_3dmodel_filename: '/home/jay/src/keyswitch_model/choc/v2/KiCad/lofree/wizard.step'
@@ -260,13 +261,13 @@ pcbs:
         what: ceoloide/diode_tht_sod123
         where: [keys]
         params: &diodes
+          side: B
           from: "{{colrow}}"
           to: "{{row}}"
-          include_tht: true
           reversible: true
         adjust:
-          shift: [0, -9.5]
-          rotate: 180
+          shift: [-4.25, 1.0]
+          rotate: 225
       diodes_for_thumb_keys:
         what: ceoloide/diode_tht_sod123
         where: [thumb_keys]
@@ -274,7 +275,7 @@ pcbs:
           <<: *diodes
         adjust:
           rotate: 180
-          shift: [0, -8.0]
+          shift: [0, 9.5]
       controller:
         what: ceoloide/mcu_nice_nano
         where:
@@ -318,7 +319,7 @@ pcbs:
         what: ceoloide/power_switch_smd_side
         where: [power_switch]
         params:
-          side: B
+          side: F
           reversible: true
           from: SW2
           to: RAW
@@ -349,7 +350,7 @@ pcbs:
         what: ceoloide/reset_switch_smd_side
         where: [reset_switch]
         params:
-          side: B
+          side: F
           reversible: true
       encoder:
         what: ceoloide/rotary_encoder_ec11_ec12

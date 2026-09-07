@@ -292,13 +292,13 @@ pcbs:
           shift: [0, 0.5py - 0.3]
       battery_connector:
         what: ceoloide/battery_connector_jst_ph_2
-        where: matrix_C3_R3
+        where: matrix_C4_R2
         params:
           reversible: true
           side: B
         adjust:
-          shift: [-6, -10.75]
-          rotate: -65
+          shift: [-3, -11.5]
+          rotate: -63
       reset_switch:
         what: ceoloide/reset_switch_smd_side
         where: matrix_C5_R3

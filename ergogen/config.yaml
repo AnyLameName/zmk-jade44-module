@@ -3,7 +3,7 @@ meta:
 units:
   kx: cx
   ky: cy
-  px: kx + 2
+  px: kx + 2.25
   py: ky + 2
 points:
   zones:
@@ -40,7 +40,7 @@ points:
         C3:
         C4.key.shift: [1, -1]
         C5.key.shift: [2, -2]
-        C6.key.shift: [3, -3]
+        C6.key.shift: [3, -2.75]
       rows:
         RT:
           splay: -6
@@ -62,43 +62,48 @@ points:
         - screw_hole
       anchor:
         aggregate.parts: [matrix_C1_R2, matrix_C2_R3]
-        shift: [0, -1]
+        shift: [-0.50, -1.25]
     screw_hole_2:
       key.tags:
         - screw_hole
       anchor:
         aggregate.parts: [matrix_C3_R2, matrix_C4_R3]
-        shift: [0, -2]
+        shift: [-0.50, -2.25]
     screw_hole_3:
       key.tags:
         - screw_hole
       anchor:
         aggregate.parts: [matrix_C5_R2, matrix_C6_R3]
-        shift: [0, -1]
+        shift: [0.40, -0.75]
     screw_hole_4:
       key.tags:
         - screw_hole
       anchor:
         aggregate.parts: [thumb_fan_C5_RT, thumb_fan_C6_RT]
-        shift: [0, py/2 - 0.5]
+        shift: [0, py/2 - 1]
     screw_hole_5:
       key.tags:
         - screw_hole
       anchor:
         aggregate.parts: [thumb_fan_C3_RT, matrix_C5_R1]
-        shift: [0, 0]
+        shift: [-0.50, 0.25]
     screw_hole_6:
       key.tags:
         - screw_hole
       anchor:
         aggregate.parts: [matrix_C1_R2, matrix_C2_R2]
-        shift: [0, -(py/2 + 1)]
+        shift: [-0.50, -(py/2 + 1.50)]
 outlines:
   _keycaps:
     - what: rectangle
       where: [keys, thumb_keys]
       size: [cx, cy]
       fillet: 1
+  _keyswitches:
+    - what: rectangle
+      where: [keys, thumb_keys]
+      size: [15, 15]
+      fillet: 0.5
   _board:
     - what: polygon
       fillet: 1
@@ -179,6 +184,9 @@ outlines:
     - what: outline
       name: _keycaps
     - what: outline
+      name: _keyswitches
+      operation: stack
+    - what: outline
       name: _board
       operation: stack
     - what: outline
@@ -199,6 +207,7 @@ pcbs:
           from: "{{colrow}}"
           to: "{{col.name}}"
           hotswap: true
+          hotswap_pads_same_side: true
           solder: false
           reversible: true
           switch_3dmodel_filename: '/home/jay/src/keyswitch_model/choc/v2/KiCad/lofree/wizard.step'
@@ -218,13 +227,13 @@ pcbs:
         what: ceoloide/diode_tht_sod123
         where: [keys]
         params: &diodes
+          side: B
           from: "{{colrow}}"
           to: "{{row}}"
-          include_tht: true
           reversible: true
         adjust:
-          shift: [0, -9.5]
-          rotate: 180
+          shift: [-4.25, 1.0]
+          rotate: 225
       diodes_for_thumb_keys:
         what: ceoloide/diode_tht_sod123
         where: [thumb_keys]
@@ -232,7 +241,7 @@ pcbs:
           <<: *diodes
         adjust:
           rotate: 180
-          shift: [0, -8.0]
+          shift: [0, 9.5]
       controller:
         what: ceoloide/mcu_nice_nano
         where:
@@ -276,29 +285,29 @@ pcbs:
         what: ceoloide/power_switch_smd_side
         where: matrix_C6_R3
         params:
-          side: B
+          side: F
           reversible: true
         adjust:
-          rotate: 90
-          shift: [0, 0.5py - 2]
+          rotate: 77
+          shift: [0, 0.5py - 0.3]
       battery_connector:
         what: ceoloide/battery_connector_jst_ph_2
-        where: mcu
+        where: matrix_C3_R3
         params:
           reversible: true
           side: B
         adjust:
-          shift: [4.5, -35]
-          rotate: -90
+          shift: [-6, -10.75]
+          rotate: -65
       reset_switch:
-        what: ceoloide/reset_switch_tht_top
-        where: mcu
+        what: ceoloide/reset_switch_smd_side
+        where: matrix_C5_R3
         params:
-          side: B
+          side: F
           reversible: true
         adjust:
-          shift: [10,-35]
-          rotate: 90
+          shift: [0, 0.5py + 1.25]
+          rotate: -13
       m2_screws:
         what: ceoloide/mounting_hole_npth
         where: [screw_hole]

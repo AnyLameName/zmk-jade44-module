@@ -40,6 +40,29 @@
         , <&pro_micro 8 GPIO_ACTIVE_HIGH>
       ;
   };
+  
+  left_encoder: encoder_left {
+    compatible = "alps,ec11";
+    a-gpios = <&pro_micro 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+    b-gpios = <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+    steps = <80>;
+    status = "disabled";
+  };
+  
+  // Flip the pins for the other side because this footprint doesn't use reversible jumpers
+  right_encoder: encoder_right {
+    compatible = "alps,ec11";
+    a-gpios = <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+    b-gpios = <&pro_micro 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+    steps = <24>;
+    status = "disabled";
+  };
+  
+  sensors: sensors {
+    compatible = "zmk,keymap-sensors";
+    sensors = <&left_encoder &right_encoder>;
+    triggers-per-rotation = <24>;
+  };
 
   physical_layout0: physical_layout_0 {
     compatible = "zmk,physical-layout";

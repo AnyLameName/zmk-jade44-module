@@ -1,7 +1,9 @@
-&default_transform {
-  col-offset = <6>;
-};
+/ {
+  &default_transform {
+    col-offset = <6>;
+  };
 
-&right_encoder {
-  status = "okay";
+  &right_encoder {
+    status = "okay";
+  };
 };

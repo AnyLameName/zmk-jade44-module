@@ -93,6 +93,40 @@ points:
       anchor:
         aggregate.parts: [matrix_C1_R2, matrix_C2_R2]
         shift: [-0.50, -(py/2 + 1.50)]
+    power_switch:
+      key.tags:
+        - power_switch
+      anchor:
+        - ref: matrix_C6_R3
+          rotate: 77
+          shift: [0, 0.5py - 0.3]
+    secondary_switch: # What footprint are we using for this? Thinking through hole reset switch with explicit NETs?
+      key.tags:
+        - secondary_switch
+      anchor:
+        - ref: matrix_C3_R3
+          shift: [0, 0.5py]
+    battery_jack:
+      key.tags:
+        - battery_jack
+      anchor:
+        - ref: matrix_C4_R2
+          shift: [-3, -11.5]
+          rotate: -63
+    reset_switch:
+      key.tags:
+        - reset_switch
+      anchor:
+        - ref: matrix_C5_R3
+          shift: [0, 0.5py + 1.25]
+          rotate: -13
+    encoder:
+      key.tags:
+        - encoder
+      anchor:
+        - ref: mcu
+          shift: [0, -34]
+          rotate: 180
 outlines:
   _keycaps:
     - what: rectangle
@@ -104,6 +138,35 @@ outlines:
       where: [keys, thumb_keys]
       size: [15, 15]
       fillet: 0.5
+  _power_switch:
+    - what: circle
+      where: [power_switch]
+      radius: 1
+  _secondary_switch:
+    - what: circle
+      where: [secondary_switch]
+      radius: 0.5
+  _battery_jack:
+    - what: rectangle
+      where: [battery_jack]
+      size: [6.5, 12]
+  _reset_switch:
+    - what: circle
+      where: [reset_switch]
+      radius: 1
+  _encoder:
+    - what: rectangle
+      where: [encoder]
+      size: [13.2, 14]
+      fillet: 1.5
+    - what: circle
+      where: [encoder]
+      radius: 3
+      operation: stack
+    - what: circle
+      where: [encoder]
+      radius: 3.3
+      operation: stack
   _board:
     - what: polygon
       fillet: 1
@@ -185,6 +248,21 @@ outlines:
       name: _keycaps
     - what: outline
       name: _keyswitches
+      operation: stack
+    - what: outline
+      name: _power_switch
+      operation: stack
+    - what: outline
+      name: _secondary_switch
+      operation: stack
+    - what: outline
+      name: _battery_jack
+      operation: stack
+    - what: outline
+      name: _reset_switch
+      operation: stack
+    - what: outline
+      name: _encoder
       operation: stack
     - what: outline
       name: _board
@@ -283,31 +361,27 @@ pcbs:
           reversible: true
       power_switch:
         what: ceoloide/power_switch_smd_side
-        where: matrix_C6_R3
+        where: [power_switch]
         params:
           side: F
           reversible: true
-        adjust:
-          rotate: 77
-          shift: [0, 0.5py - 0.3]
-      battery_connector:
+      battery_jack:
         what: ceoloide/battery_connector_jst_ph_2
-        where: matrix_C4_R2
+        where: [battery_jack]
         params:
           reversible: true
           side: B
-        adjust:
-          shift: [-3, -11.5]
-          rotate: -63
       reset_switch:
         what: ceoloide/reset_switch_smd_side
-        where: matrix_C5_R3
+        where: [reset_switch]
         params:
           side: F
           reversible: true
-        adjust:
-          shift: [0, 0.5py + 1.25]
-          rotate: -13
+      encoder:
+        what: ceoloide/rotary_encoder_ec11_ec12
+        where: [encoder]
+        params:
+          include_momentary_switch_pads: false
       m2_screws:
         what: ceoloide/mounting_hole_npth
         where: [screw_hole]

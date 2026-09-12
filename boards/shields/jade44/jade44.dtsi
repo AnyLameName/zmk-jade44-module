@@ -41,7 +41,7 @@
       ;
   };
   
-  left_encoder: encoder_left {
+  left_encoder: left_encoder {
     compatible = "alps,ec11";
     a-gpios = <&pro_micro 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
     b-gpios = <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
@@ -50,7 +50,7 @@
   };
   
   // Flip the pins for the other side because this footprint doesn't use reversible jumpers
-  right_encoder: encoder_right {
+  right_encoder: right_encoder {
     compatible = "alps,ec11";
     a-gpios = <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
     b-gpios = <&pro_micro 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;

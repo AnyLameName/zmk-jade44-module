@@ -1,9 +1,5 @@
-/ {
-  &default_transform {
-    col-offset = <6>;
-  };
+#include "jade44.dtsi"
 
-  &right_encoder {
-    status = "okay";
-  };
+&default_transform {
+  col-offset = <6>;
 };

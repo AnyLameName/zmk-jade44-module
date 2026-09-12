@@ -221,6 +221,21 @@ outlines:
       name: _encoder
       operation: stack
     - what: outline
+      name: _power_switch
+      operation: stack
+    - what: outline
+      name: _secondary_switch
+      operation: stack
+    - what: outline
+      name: _battery_jack
+      operation: stack
+    - what: outline
+      name: _reset_switch
+      operation: stack
+    - what: outline
+      name: _encoder
+      operation: stack
+    - what: outline
       name: _board
       operation: stack
     - what: outline

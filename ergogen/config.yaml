@@ -350,8 +350,8 @@ pcbs:
           P14: R2
           P15: R3
           P18: RT
-          P19: NC
-          P20: NC
+          P19: REC
+          P20: REA
           P21: NC
           # VCC, RST, GND, and RAW follow.
       display:
@@ -365,6 +365,25 @@ pcbs:
         params:
           side: F
           reversible: true
+          from: SW2
+          to: RAW
+      secondary_switch:
+        what: ceoloide/reset_switch_tht_top
+        where: [secondary_switch]
+        params:
+          side: F
+          reversible: true
+          # Some changes because we aren't using this as a reset switch.
+          designator: PWR
+          from: BAT_P
+          to: SW2
+          include_silkscreen: false
+      switch_label:
+        what: ceoloide/utility_text
+        where: [secondary_switch]
+        params:
+          reversible: true
+          text: PWR2
       battery_jack:
         what: ceoloide/battery_connector_jst_ph_2
         where: [battery_jack]
@@ -382,6 +401,9 @@ pcbs:
         where: [encoder]
         params:
           include_momentary_switch_pads: false
+          # Shorter net names for a less cluttered silkscreen under the MCU
+          A: REA
+          C: REC
       m2_screws:
         what: ceoloide/mounting_hole_npth
         where: [screw_hole]

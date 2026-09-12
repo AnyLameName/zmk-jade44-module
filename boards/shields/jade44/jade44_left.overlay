@@ -1,3 +1,5 @@
 #include "jade44.dtsi"
 
-// Nothing to do here.
+&left_encoder {
+  status = "okay";
+};

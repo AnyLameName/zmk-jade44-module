@@ -45,14 +45,10 @@ points:
         RT:
           splay: -6
     mcu:
-      key.tags:
-        - helper
       anchor:
         - ref: matrix_C6_R3
           shift: [20,-8]
     display:
-      key.tags:
-        - helper
       anchor:
         - ref: mcu
           shift: [0,-3.5]
@@ -60,32 +56,20 @@ points:
       key.tags:
         - power_switch
       anchor:
-        - ref: matrix_C6_R3
-          rotate: 77
-          shift: [0, 0.5py - 0.3]
-    secondary_switch:
-      key.tags:
-        - secondary_switch
+        - ref: matrix_C3_R1
+          shift: [7, -18]
+          rotate: 260
+    power_switch:
       anchor:
-        - ref: matrix_C3_R3
-          shift: [0, 0.5py]
-    battery_jack:
-      key.tags:
-        - battery_jack
-      anchor:
-        - ref: matrix_C4_R2
-          shift: [-3, -11.5]
-          rotate: -63
+        - ref: matrix_C2_R1
+          shift: [11, -11]
+          rotate: 90
     reset_switch:
-      key.tags:
-        - reset_switch
       anchor:
         - ref: matrix_C5_R3
-          shift: [0, 0.5py + 1.25]
+          shift: [0, 0.5py + 1.80]
           rotate: -13
     encoder:
-      key.tags:
-        - encoder
       anchor:
         - ref: mcu
           shift: [0, -34]
@@ -108,31 +92,27 @@ outlines:
       fillet: 0.5
   _power_switch:
     - what: circle
-      where: [power_switch]
-      radius: 1
-  _secondary_switch:
-    - what: circle
-      where: [secondary_switch]
+      where: secondary_switch
       radius: 0.5
   _battery_jack:
     - what: rectangle
-      where: [battery_jack]
+      where: battery_jack
       size: [6.5, 12]
   _reset_switch:
     - what: circle
-      where: [reset_switch]
+      where: reset_switch
       radius: 1
   _encoder:
     - what: rectangle
-      where: [encoder]
+      where: encoder
       size: [13.2, 14]
       fillet: 1.5
     - what: circle
-      where: [encoder]
+      where: encoder
       radius: 3
       operation: stack
     - what: circle
-      where: [encoder]
+      where: encoder
       radius: 3.3
       operation: stack
   _board:
@@ -172,47 +152,47 @@ outlines:
           shift: [-px/2, -py/2]
   _mcu:
     - what: rectangle
-      where: [mcu]
+      where: mcu
       size: [17.78,33]
       fillet: 1
     - what: rectangle
-      where: [mcu]
+      where: mcu
       size: [8.94,7.35]
       fillet: 0.1
       operation: stack
       adjust:
         shift: [0,33/2-7.35/2+0.7]
     - what: circle
-      where: [mcu]
+      where: mcu
       radius: 1
       operation: stack
     # Header rows, mostly just for the plate.
     - what: rectangle
-      where: [mcu]
+      where: mcu
       adjust:
         shift: [(17.78 - 2.75) / 2, 0]
       size: [2.75, 30.75]
       operation: stack
     - what: rectangle
-      where: [mcu]
+      where: mcu
       adjust:
         shift: [-(17.78 - 2.75) / 2, 0]
       size: [2.75, 30.75]
       operation: stack
   _display:
     - what: rectangle
-      where: [display]
+      where: display
       size: [14,36]
       fillet: 0.5
     - what: rectangle
-      where: [display]
+      where: display
       size: [12.82,2.66]
       operation: stack
       fillet: 0.1
       adjust:
         shift: [0,-16.7]
     - what: rectangle
-      where: [display]
+      where: display
       size: [10.8,24.6]
       operation: stack
       adjust:
@@ -244,9 +224,6 @@ outlines:
       operation: stack
     - what: outline
       name: _power_switch
-      operation: stack
-    - what: outline
-      name: _secondary_switch
       operation: stack
     - what: outline
       name: _battery_jack
@@ -281,7 +258,6 @@ pcbs:
           hotswap_pads_same_side: true
           solder: false
           reversible: true
-          #switch_3dmodel_filename: '/home/jay/src/keyswitch_model/choc/v2/KiCad/lofree/wizard.step'
           switch_3dmodel_filename: '/home/jay/src/zmk-jade44-module/kicad/models/purple-wizard.step'
           switch_3dmodel_xyz_rotation: [0, 180, 0]
           switch_3dmodel_xyz_offset: [0, 0, -1.5]
@@ -356,31 +332,19 @@ pcbs:
         params:
           reversible: true
       power_switch:
-        what: ceoloide/power_switch_smd_side
-        where: [power_switch]
-        params:
-          side: B
-          reversible: true
-          from: SW2
-          to: RAW
-          #battery_connector_3dmodel_filename: default is ''
-          #battery_connector_3dmodel_xyz_offset: default is [0, 0, 0]
-          #battery_connector_3dmodel_xyz_scale: default is [1, 1, 1]
-          #battery_connector_3dmodel_xyz_rotation: default is [0, 0, 0]
-      secondary_switch:
         what: ceoloide/reset_switch_tht_top
-        where: [secondary_switch]
+        where: [power_switch]
         params:
           side: B
           reversible: true
           # Some changes because we aren't using this as a reset switch.
           designator: PWR
           from: BAT_P
-          to: SW2
+          to: RAW
           include_silkscreen: false
       switch_label:
         what: ceoloide/utility_text
-        where: [secondary_switch]
+        where: [power_switch]
         params:
           reversible: true
           text: PWR2

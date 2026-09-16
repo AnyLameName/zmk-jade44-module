@@ -182,6 +182,23 @@ outlines:
       operation: stack
       adjust:
         shift: [0,33/2-7.35/2+0.7]
+    - what: circle
+      where: [mcu]
+      radius: 1
+      operation: stack
+    # Header rows, mostly just for the plate.
+    - what: rectangle
+      where: [mcu]
+      adjust:
+        shift: [(17.78 - 2.75) / 2, 0]
+      size: [2.75, 30.75]
+      operation: stack
+    - what: rectangle
+      where: [mcu]
+      adjust:
+        shift: [-(17.78 - 2.75) / 2, 0]
+      size: [2.75, 30.75]
+      operation: stack
   _display:
     - what: rectangle
       where: [display]
@@ -264,7 +281,8 @@ pcbs:
           hotswap_pads_same_side: true
           solder: false
           reversible: true
-          switch_3dmodel_filename: '/home/jay/src/keyswitch_model/choc/v2/KiCad/lofree/wizard.step'
+          #switch_3dmodel_filename: '/home/jay/src/keyswitch_model/choc/v2/KiCad/lofree/wizard.step'
+          switch_3dmodel_filename: '/home/jay/src/zmk-jade44-module/kicad/models/purple-wizard.step'
           switch_3dmodel_xyz_rotation: [0, 180, 0]
           switch_3dmodel_xyz_offset: [0, 0, -1.5]
           hotswap_3dmodel_filename: '/home/jay/src/keyswitch_model/socket/KiCad/choc.step'
@@ -285,6 +303,9 @@ pcbs:
           from: "{{colrow}}"
           to: "{{row}}"
           reversible: true
+          diode_3dmodel_filename: '/home/jay/src/zmk-jade44-module/kicad/models/diode.step'
+          diode_3dmodel_xyz_rotation: [0, 180, 0]
+          diode_3dmodel_xyz_offset: [0, 0, -1.5]
         adjust:
           shift: [-4.25, 1.0]
           rotate: 225
@@ -303,7 +324,6 @@ pcbs:
         params:
           reversible: true
           reverse_mount: true
-          mcu_3dmodel_filename: '/home/jay/src/kb_ergogen_fp/3d_models/Nice_Nano_V2.step'
           # Pin names are Arduino pin names, not the MCU pin names.
           # For example, "P2" here refers to the pin labeled "D2" on the board in Arduino terms, 
           # which is P0.17 in Nice Nano V2 terms.
@@ -343,6 +363,10 @@ pcbs:
           reversible: true
           from: SW2
           to: RAW
+          #battery_connector_3dmodel_filename: default is ''
+          #battery_connector_3dmodel_xyz_offset: default is [0, 0, 0]
+          #battery_connector_3dmodel_xyz_scale: default is [1, 1, 1]
+          #battery_connector_3dmodel_xyz_rotation: default is [0, 0, 0]
       secondary_switch:
         what: ceoloide/reset_switch_tht_top
         where: [secondary_switch]

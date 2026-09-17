@@ -52,12 +52,10 @@ points:
       anchor:
         - ref: mcu
           shift: [0,-3.5]
-    power_switch:
-      key.tags:
-        - power_switch
+    battery_jack:
       anchor:
         - ref: matrix_C3_R1
-          shift: [7, -18]
+          shift: [ 7, -18 ]
           rotate: 260
     power_switch:
       anchor:
@@ -333,7 +331,7 @@ pcbs:
           reversible: true
       power_switch:
         what: ceoloide/reset_switch_tht_top
-        where: [power_switch]
+        where: power_switch
         params:
           side: B
           reversible: true
@@ -344,25 +342,25 @@ pcbs:
           include_silkscreen: false
       switch_label:
         what: ceoloide/utility_text
-        where: [power_switch]
+        where: power_switch
         params:
           reversible: true
           text: PWR2
       battery_jack:
         what: ceoloide/battery_connector_jst_ph_2
-        where: [battery_jack]
+        where: battery_jack
         params:
           reversible: true
           side: B
       reset_switch:
         what: ceoloide/reset_switch_smd_side
-        where: [reset_switch]
+        where: reset_switch
         params:
           side: B
           reversible: true
       encoder:
         what: ceoloide/rotary_encoder_ec11_ec12
-        where: [encoder]
+        where: encoder
         params:
           include_momentary_switch_pads: false
           # Shorter net names for a less cluttered silkscreen under the MCU

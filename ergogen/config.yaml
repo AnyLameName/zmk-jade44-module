@@ -160,23 +160,28 @@ outlines:
       operation: stack
       adjust:
         shift: [0,33/2-7.35/2+0.7]
-    - what: circle
-      where: mcu
-      radius: 1
-      operation: stack
-    # Header rows, mostly just for the plate.
+  _mcu_socket:
+    # Socket rows, only useful for the plate.
     - what: rectangle
       where: mcu
       adjust:
-        shift: [(17.78 - 2.75) / 2, 0]
-      size: [2.75, 30.75]
+        shift: [(17.78 - 2.50) / 2, -2.50 / 2]
+      size: [3.25, 31.25]
       operation: stack
     - what: rectangle
       where: mcu
       adjust:
-        shift: [-(17.78 - 2.75) / 2, 0]
-      size: [2.75, 30.75]
+        shift: [-(17.78 - 2.50) / 2, -2.50 / 2]
+      size: [3.25, 31.25]
       operation: stack
+  _display_socket:
+    - what: rectangle
+      where: display
+      size: [13, 3]
+      operation: stack
+      fillet: 0.1
+      adjust:
+        shift: [0,-16.7]
   _display:
     - what: rectangle
       where: display
@@ -184,17 +189,13 @@ outlines:
       fillet: 0.5
     - what: rectangle
       where: display
-      size: [12.82,2.66]
-      operation: stack
-      fillet: 0.1
-      adjust:
-        shift: [0,-16.7]
-    - what: rectangle
-      where: display
       size: [10.8,24.6]
       operation: stack
       adjust:
         shift: [0,-0.75]
+    - what: outline
+      name: _display_socket
+      operation: stack
   _mcu_cluster:
     - what: outline
       name: _mcu
@@ -202,11 +203,17 @@ outlines:
     - what: outline
       name: _display
       operation: stack
+    - what: outline
+      name: _mcu_socket
+      operation: stack
   plate:
     - what: outline
       name: _board
     - what: outline
-      name: _mcu_cluster
+      name: _mcu_socket
+      operation: stack
+    - what: outline
+      name: _display_socket
       operation: stack
     - what: outline
       name: _keyswitch_cutouts

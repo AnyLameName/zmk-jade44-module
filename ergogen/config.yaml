@@ -55,12 +55,12 @@ points:
     battery_jack:
       anchor:
         - ref: matrix_C3_R1
-          shift: [ 7, -18 ]
+          shift: [4, -18]
           rotate: 260
     power_switch:
       anchor:
         - ref: matrix_C2_R1
-          shift: [11, -11]
+          shift: [11, -12]
           rotate: 90
     reset_switch:
       anchor:
@@ -71,7 +71,6 @@ points:
       anchor:
         - ref: mcu
           shift: [0, -34]
-          rotate: 180
 outlines:
   _keycaps:
     - what: rectangle
@@ -89,17 +88,17 @@ outlines:
       size: [14, 14]
       fillet: 0.5
   _power_switch:
-    - what: circle
-      where: secondary_switch
-      radius: 0.5
+    - what: rectangle
+      where: power_switch
+      size: [8.75, 2]
   _battery_jack:
     - what: rectangle
       where: battery_jack
       size: [6.5, 12]
   _reset_switch:
-    - what: circle
+    - what: rectangle
       where: reset_switch
-      radius: 1
+      size: [7.25, 3.25]
   _encoder:
     - what: rectangle
       where: encoder
@@ -113,6 +112,12 @@ outlines:
       where: encoder
       radius: 3.3
       operation: stack
+  _encoder_pins:
+    - what: rectangle
+      where: encoder
+      size: [7, 1.5]
+      adjust:
+        shift: [0, 7]
   _board:
     - what: polygon
       fillet: 1
@@ -220,6 +225,9 @@ outlines:
       operation: stack
     - what: outline
       name: _encoder
+      operation: stack
+    - what: outline
+      name: _encoder_pins
       operation: stack
   preview:
     - what: outline
@@ -368,6 +376,8 @@ pcbs:
       encoder:
         what: ceoloide/rotary_encoder_ec11_ec12
         where: encoder
+        adjust:
+          rotate: 180
         params:
           include_momentary_switch_pads: false
           # Shorter net names for a less cluttered silkscreen under the MCU

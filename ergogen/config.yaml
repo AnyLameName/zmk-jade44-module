@@ -115,7 +115,7 @@ outlines:
   _encoder_pins:
     - what: rectangle
       where: encoder
-      size: [7, 1.5]
+      size: [7, 2]
       adjust:
         shift: [0, 7]
   _board:

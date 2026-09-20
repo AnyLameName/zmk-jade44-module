@@ -182,7 +182,7 @@ outlines:
   _display_socket:
     - what: rectangle
       where: display
-      size: [13, 3]
+      size: [13.5, 3]
       operation: stack
       fillet: 0.1
       adjust:
@@ -271,7 +271,7 @@ pcbs:
           hotswap_pads_same_side: true
           solder: false
           reversible: true
-          switch_3dmodel_filename: '/home/jay/src/zmk-jade44-module/kicad/models/purple-wizard.step'
+          switch_3dmodel_filename: '/home/jay/src/zmk-jade44-module/kicad/models/reduced-wizard.step'
           switch_3dmodel_xyz_rotation: [0, 180, 0]
           switch_3dmodel_xyz_offset: [0, 0, -1.5]
           hotswap_3dmodel_filename: '/home/jay/src/keyswitch_model/socket/KiCad/choc.step'
@@ -360,7 +360,7 @@ pcbs:
         where: power_switch
         params:
           reversible: true
-          text: PWR2
+          text: PWR
       battery_jack:
         what: ceoloide/battery_connector_jst_ph_2
         where: battery_jack

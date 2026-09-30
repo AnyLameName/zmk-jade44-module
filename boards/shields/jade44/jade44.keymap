@@ -60,10 +60,10 @@
       display-name = "Hack";
 
       bindings = <
-        &trans  &trans  &trans  &trans  &trans  &trans        &trans  &trans        &trans        &trans      &kp C_PP  &trans
-        &trans  &trans  &trans  &trans  &trans  &trans        &trans  &kp C_VOL_DN  &kp C_VOL_UP  &kp LG(L)   &trans    &trans
-        &trans  &trans  &trans  &trans  &trans  &trans        &trans  &kp C_MUTE    &kp C_PREV    &kp C_NEXT  &trans    &trans
-                        &trans  &trans  &trans  &trans        &trans  &trans        &trans        &trans
+        &trans  &trans  &trans  &trans    &trans    &trans        &trans  &trans        &trans        &trans      &kp C_PP  &trans
+        &trans  &trans  &trans  &kp C_RW  &kp C_FF  &trans        &trans  &kp C_VOL_DN  &kp C_VOL_UP  &kp LG(L)   &trans    &trans
+        &trans  &trans  &trans  &trans    &trans    &trans        &trans  &kp C_MUTE    &kp C_PREV    &kp C_NEXT  &trans    &trans
+                        &trans  &trans    &trans    &trans        &trans  &trans        &trans        &trans
       >;
     };
 

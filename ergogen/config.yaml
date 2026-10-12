@@ -281,6 +281,9 @@ pcbs:
           hotswap_3dmodel_filename: '/home/jay/src/keyswitch_model/socket/KiCad/choc.step'
           hotswap_3dmodel_xyz_rotation: [0, 180, 0]
           hotswap_3dmodel_xyz_offset: [0, -6, 1.5]
+          keycap_3dmodel_filename: '/home/jay/src/zmk-jade44-module/kicad/models/tai-hao-thin.step'
+          keycap_3dmodel_xyz_rotation: [0, 180, 0]
+          keycap_3dmodel_xyz_offset: [0, 0, -8.15]
         adjust:
           rotate: 180
       thumb_keys:

@@ -348,14 +348,14 @@ pcbs:
           P9: R1
           # Right side, bottom to top.
           # P10 and P16 are NFC pins. Skip them.
-          P10: NC
-          P16: NC
+          P10: ""
+          P16: ""
           P14: R2
           P15: R3
           P18: RT
           P19: REC
           P20: REA
-          P21: NC
+          P21: ""
           # VCC, RST, GND, and RAW follow.
       display:
         what: ceoloide/display_nice_view

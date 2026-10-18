@@ -116,7 +116,7 @@ outlines:
       size: [7, 2]
       adjust:
         shift: [0, 7]
-      operation: stack
+      operation: add
   _board_base:
     - what: polygon
       fillet: 1
@@ -174,7 +174,7 @@ outlines:
         - ref: mcu
           shift: [-9.25, 16.65]
         - shift: [18.4, 0]
-        # A nice vertical edge, maybe room for an encoder?
+        # A nice vertical edge
         - shift: [0, -69]
         - shift: [-18.4, 0]
   _mcu:
@@ -235,6 +235,16 @@ outlines:
     - what: outline
       name: _mcu_socket
       operation: stack
+  _plate_tab:
+    # Tab is a 2x10 rectangle.
+    # Stem is 2mm wide, 1mm long.
+    - what: rectangle
+      size: [10, 2]
+      adjust.shift: [0, 2]
+    - what: rectangle
+      size: [2, 1]
+      adjust.shift: [0, .5]
+      operation: add
   plate:
     - what: outline
       name: _board_base
@@ -244,6 +254,84 @@ outlines:
     - what: outline
       name: _encoder
       operation: stack
+    # Top Left
+    - what: outline
+      name: _plate_tab
+      where: matrix_C2_R3
+      adjust:
+        shift: [0, py/2 + 4.74]
+        rotate: 14.9
+      operation: add
+    # Top Center
+    - what: outline
+      name: _plate_tab
+      where: matrix_C4_R3
+      adjust.shift: [0, py/2]
+      operation: add
+    # Top Right
+    - what: outline
+      name: _plate_tab
+      where: matrix_C6_R3
+      adjust:
+        shift: [0, py/2 + 1.61]
+        rotate: -13
+      operation: add
+    # Encoder
+    - what: outline
+      name: _plate_tab
+      where: encoder
+      adjust:
+        shift: [9.15, 0]
+        rotate: -90
+      operation: add
+    # Thumb Inner Right
+    - what: outline
+      name: _plate_tab
+      where: thumb_fan_C6_RT
+      adjust:
+        shift: [px/2, 0]
+        rotate: -90
+      operation: add
+    # Thumb Inner Down
+    - what: outline
+      name: _plate_tab
+      where: thumb_fan_C6_RT
+      adjust:
+        shift: [0, -(py/2 + .25)]
+        rotate: 181.5
+      operation: add
+    # Thumb Outer
+    - what: outline
+      name: _plate_tab
+      where: thumb_fan_C4_RT
+      adjust:
+        shift: [0, -(py/2 + .525)]
+        rotate: 180
+      operation: add
+    # Bottom Left
+    - what: outline
+      name: _plate_tab
+      where: matrix_C2_R1
+      adjust:
+        shift: [0, -(py/2 + 7.03)]
+        rotate: 172
+      operation: add
+    # Left Bottom
+    - what: outline
+      name: _plate_tab
+      where: matrix_C1_R1
+      adjust:
+        shift: [-px/2, 0]
+        rotate: 90
+      operation: add
+    # Left Top
+    - what: outline
+      name: _plate_tab
+      where: matrix_C1_R3
+      adjust:
+        shift: [-px/2, 0]
+        rotate: 90
+      operation: add
   preview:
     - what: outline
       name: _keycaps

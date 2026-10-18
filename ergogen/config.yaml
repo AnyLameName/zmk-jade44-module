@@ -167,7 +167,7 @@ outlines:
       fillet: 1
       operation: add
       points:
-        # Our highest column  
+        # Start at a common point with _board_base to ensure a smooth edge.
         - ref: matrix_C4_R3
           shift: [px/2, py/2]
         # Frame around the MCU  

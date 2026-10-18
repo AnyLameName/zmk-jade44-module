@@ -111,13 +111,13 @@ outlines:
       where: encoder
       radius: 3.3
       operation: stack
-  _encoder_pins:
     - what: rectangle
       where: encoder
       size: [7, 2]
       adjust:
         shift: [0, 7]
-  _board:
+      operation: stack
+  _board_base:
     - what: polygon
       fillet: 1
       points: 
@@ -131,12 +131,15 @@ outlines:
         - ref: matrix_C4_R3
           shift: [-px/2, py/2]
         - shift: [px, 0]
-        # Frame around the MCU  
+        # Stop top-left of the MCU cluster
         - ref: mcu
           shift: [-9.25, 16.65]
+        # Bottom-left of the MCU cluster
+        - shift: [0, -38]
+        # Back out to the edge of the PCB
         - shift: [18.4, 0]
-        # A nice vertical edge, maybe room for an encoder?
-        - shift: [0, -69]
+        # Vertical edge down to match _board
+        - shift: [0, -(69 - 38)]
         # Need to bump out around the final thumb key  
         - ref: thumb_fan_C6_RT
           shift: [px/2, py/2]
@@ -157,6 +160,23 @@ outlines:
         # Finish at bottom left of board, Ergogen will close the polygon off to the first point automatically.  
         - ref: matrix_C1_R1
           shift: [-px/2, -py/2]
+  _board:
+    - what: outline
+      name: _board_base
+    - what: polygon
+      fillet: 1
+      operation: add
+      points:
+        # Our highest column  
+        - ref: matrix_C4_R3
+          shift: [px/2, py/2]
+        # Frame around the MCU  
+        - ref: mcu
+          shift: [-9.25, 16.65]
+        - shift: [18.4, 0]
+        # A nice vertical edge, maybe room for an encoder?
+        - shift: [0, -69]
+        - shift: [-18.4, 0]
   _mcu:
     - what: rectangle
       where: mcu
@@ -217,21 +237,12 @@ outlines:
       operation: stack
   plate:
     - what: outline
-      name: _board
-    - what: outline
-      name: _mcu_socket
-      operation: stack
-    - what: outline
-      name: _display_socket
-      operation: stack
+      name: _board_base
     - what: outline
       name: _keyswitch_cutouts
       operation: stack
     - what: outline
       name: _encoder
-      operation: stack
-    - what: outline
-      name: _encoder_pins
       operation: stack
   preview:
     - what: outline

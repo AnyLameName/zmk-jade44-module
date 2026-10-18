@@ -64,7 +64,7 @@ points:
     reset_switch:
       anchor:
         - ref: matrix_C5_R3
-          shift: [0, 0.5py + 1.80]
+          shift: [0, 0.5py + 2.0]
           rotate: -13
     encoder:
       anchor:
@@ -286,13 +286,13 @@ pcbs:
           hotswap_pads_same_side: true
           solder: false
           reversible: true
-          switch_3dmodel_filename: '/home/jay/src/zmk-jade44-module/kicad/models/reduced-wizard.step'
+          switch_3dmodel_filename: '${JADE44_KICAD_MODELS}/reduced-wizard.step'
           switch_3dmodel_xyz_rotation: [0, 180, 0]
           switch_3dmodel_xyz_offset: [0, 0, -1.5]
-          hotswap_3dmodel_filename: '/home/jay/src/keyswitch_model/socket/KiCad/choc.step'
+          hotswap_3dmodel_filename: '${JADE44_KICAD_MODELS}/choc.step'
           hotswap_3dmodel_xyz_rotation: [0, 180, 0]
           hotswap_3dmodel_xyz_offset: [0, -6, 1.5]
-          keycap_3dmodel_filename: '/home/jay/src/zmk-jade44-module/kicad/models/tai-hao-thin.step'
+          keycap_3dmodel_filename: '${JADE44_KICAD_MODELS}/tai-hao-thin.step'
           keycap_3dmodel_xyz_rotation: [0, 180, 0]
           keycap_3dmodel_xyz_offset: [0, 0, -8.15]
         adjust:
@@ -310,7 +310,7 @@ pcbs:
           from: "{{colrow}}"
           to: "{{row}}"
           reversible: true
-          diode_3dmodel_filename: '/home/jay/src/zmk-jade44-module/kicad/models/diode.step'
+          diode_3dmodel_filename: '${JADE44_KICAD_MODELS}/diode.step'
           diode_3dmodel_xyz_rotation: [0, 180, 0]
           diode_3dmodel_xyz_offset: [0, 0, -1.5]
         adjust:

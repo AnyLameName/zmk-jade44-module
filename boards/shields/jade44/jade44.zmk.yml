@@ -3,9 +3,12 @@ id: jade44
 name: Jade44
 type: shield
 url: https://github.com/AnyLameName/zmk-jade44-module/
-requires: [pro_micro]
+requires: 
+  - pro_micro
 features:
   - keys
+  - display
+  - encoder
 siblings:
   - jade44_left
   - jade44_right

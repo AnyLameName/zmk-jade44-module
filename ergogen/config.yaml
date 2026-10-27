@@ -19,7 +19,7 @@ points:
         C3:
           key.origin: [-200, -20]
           key.splay: -3
-          key.stagger: 12
+          key.stagger: 18
         C4:
           key.stagger: 5
         C5:
@@ -51,7 +51,7 @@ points:
     display:
       anchor:
         - ref: mcu
-          shift: [0,-3.5]
+          shift: [0,-3.0]
     battery_jack:
       anchor:
         - ref: matrix_C3_R1
@@ -59,18 +59,17 @@ points:
           rotate: 260
     power_switch:
       anchor:
-        - ref: matrix_C2_R1
-          shift: [11, -12]
-          rotate: 90
+        - ref: battery_jack
+          shift: [0, -10]
     reset_switch:
       anchor:
         - ref: matrix_C5_R3
-          shift: [0, 0.5py + 1.80]
+          shift: [0, 0.5py + 2.0]
           rotate: -13
     encoder:
       anchor:
         - ref: mcu
-          shift: [0, -34]
+          shift: [0, -35]
 outlines:
   _keycaps:
     - what: rectangle
@@ -112,33 +111,41 @@ outlines:
       where: encoder
       radius: 3.3
       operation: stack
-  _encoder_pins:
     - what: rectangle
       where: encoder
-      size: [7, 1.5]
+      size: [7, 2]
       adjust:
         shift: [0, 7]
-  _board:
+      operation: add
+  _board_base:
     - what: polygon
       fillet: 1
       points: 
         # Start top left the board
         - ref: matrix_C1_R3
           shift: [-px/2, py/2]
-        # Go directly to highest column  
+        # Make sure there is enough room around C3
+        - ref: matrix_C3_R3
+          shift: [-px/2, py/2]
+        # Our highest column  
         - ref: matrix_C4_R3
           shift: [-px/2, py/2]
         - shift: [px, 0]
-        # Frame around the MCU  
+        # Stop top-left of the MCU cluster
         - ref: mcu
-          shift: [-10, 16.85]
-        - shift: [20, 0]
-        # A nice vertical edge, maybe room for an encoder?
-        - shift: [0, -69]
+          shift: [-9.25, 16.65]
+        # Bottom-left of the MCU cluster
+        - shift: [0, -38]
+        # Back out to the edge of the PCB
+        - shift: [18.4, 0]
+        # Vertical edge down to match _board
+        - shift: [0, -(69 - 38)]
+        # Need to bump out around the final thumb key  
         - ref: thumb_fan_C6_RT
           shift: [px/2, py/2]
+        # Bottom right corner of the key
         - shift: [0, -py]
-        # Fancy dance around the thumb fan  
+        # Fancy dance around the bottom of the thumb fan  
         - aggregate:
             parts: [thumb_fan_C5_RT, thumb_fan_C6_RT]
           shift: [0, -py/2]
@@ -153,6 +160,23 @@ outlines:
         # Finish at bottom left of board, Ergogen will close the polygon off to the first point automatically.  
         - ref: matrix_C1_R1
           shift: [-px/2, -py/2]
+  _board:
+    - what: outline
+      name: _board_base
+    - what: polygon
+      fillet: 1
+      operation: add
+      points:
+        # Start at a common point with _board_base to ensure a smooth edge.
+        - ref: matrix_C4_R3
+          shift: [px/2, py/2]
+        # Frame around the MCU  
+        - ref: mcu
+          shift: [-9.25, 16.65]
+        - shift: [18.4, 0]
+        # A nice vertical edge
+        - shift: [0, -69]
+        - shift: [-18.4, 0]
   _mcu:
     - what: rectangle
       where: mcu
@@ -182,7 +206,7 @@ outlines:
   _display_socket:
     - what: rectangle
       where: display
-      size: [13, 3]
+      size: [13.5, 3]
       operation: stack
       fillet: 0.1
       adjust:
@@ -211,24 +235,103 @@ outlines:
     - what: outline
       name: _mcu_socket
       operation: stack
+  _plate_tab:
+    # Tab is a 2x10 rectangle.
+    # Stem is 2mm wide, 1mm long.
+    - what: rectangle
+      size: [10, 2]
+      adjust.shift: [0, 2]
+    - what: rectangle
+      size: [2, 1]
+      adjust.shift: [0, .5]
+      operation: add
   plate:
     - what: outline
-      name: _board
-    - what: outline
-      name: _mcu_socket
-      operation: stack
-    - what: outline
-      name: _display_socket
-      operation: stack
+      name: _board_base
     - what: outline
       name: _keyswitch_cutouts
       operation: stack
     - what: outline
       name: _encoder
       operation: stack
+    # Top Left
     - what: outline
-      name: _encoder_pins
-      operation: stack
+      name: _plate_tab
+      where: matrix_C2_R3
+      adjust:
+        shift: [0, py/2 + 4.74]
+        rotate: 14.9
+      operation: add
+    # Top Center
+    - what: outline
+      name: _plate_tab
+      where: matrix_C4_R3
+      adjust.shift: [0, py/2]
+      operation: add
+    # Top Right
+    - what: outline
+      name: _plate_tab
+      where: matrix_C6_R3
+      adjust:
+        shift: [0, py/2 + 1.61]
+        rotate: -13
+      operation: add
+    # Encoder
+    - what: outline
+      name: _plate_tab
+      where: encoder
+      adjust:
+        shift: [9.15, 0]
+        rotate: -90
+      operation: add
+    # Thumb Inner Right
+    - what: outline
+      name: _plate_tab
+      where: thumb_fan_C6_RT
+      adjust:
+        shift: [px/2, 0]
+        rotate: -90
+      operation: add
+    # Thumb Inner Down
+    - what: outline
+      name: _plate_tab
+      where: thumb_fan_C6_RT
+      adjust:
+        shift: [0, -(py/2 + .25)]
+        rotate: 181.5
+      operation: add
+    # Thumb Outer
+    - what: outline
+      name: _plate_tab
+      where: thumb_fan_C4_RT
+      adjust:
+        shift: [0, -(py/2 + .525)]
+        rotate: 180
+      operation: add
+    # Bottom Left
+    - what: outline
+      name: _plate_tab
+      where: matrix_C2_R1
+      adjust:
+        shift: [0, -(py/2 + 7.03)]
+        rotate: 172
+      operation: add
+    # Left Bottom
+    - what: outline
+      name: _plate_tab
+      where: matrix_C1_R1
+      adjust:
+        shift: [-px/2, 0]
+        rotate: 90
+      operation: add
+    # Left Top
+    - what: outline
+      name: _plate_tab
+      where: matrix_C1_R3
+      adjust:
+        shift: [-px/2, 0]
+        rotate: 90
+      operation: add
   preview:
     - what: outline
       name: _keycaps
@@ -271,12 +374,15 @@ pcbs:
           hotswap_pads_same_side: true
           solder: false
           reversible: true
-          switch_3dmodel_filename: '/home/jay/src/zmk-jade44-module/kicad/models/purple-wizard.step'
+          switch_3dmodel_filename: '${JADE44_KICAD_MODELS}/reduced-wizard.step'
           switch_3dmodel_xyz_rotation: [0, 180, 0]
           switch_3dmodel_xyz_offset: [0, 0, -1.5]
-          hotswap_3dmodel_filename: '/home/jay/src/keyswitch_model/socket/KiCad/choc.step'
+          hotswap_3dmodel_filename: '${JADE44_KICAD_MODELS}/choc.step'
           hotswap_3dmodel_xyz_rotation: [0, 180, 0]
           hotswap_3dmodel_xyz_offset: [0, -6, 1.5]
+          keycap_3dmodel_filename: '${JADE44_KICAD_MODELS}/tai-hao-thin.step'
+          keycap_3dmodel_xyz_rotation: [0, 180, 0]
+          keycap_3dmodel_xyz_offset: [0, 0, -8.15]
         adjust:
           rotate: 180
       thumb_keys:
@@ -292,7 +398,7 @@ pcbs:
           from: "{{colrow}}"
           to: "{{row}}"
           reversible: true
-          diode_3dmodel_filename: '/home/jay/src/zmk-jade44-module/kicad/models/diode.step'
+          diode_3dmodel_filename: '${JADE44_KICAD_MODELS}/diode.step'
           diode_3dmodel_xyz_rotation: [0, 180, 0]
           diode_3dmodel_xyz_offset: [0, 0, -1.5]
         adjust:
@@ -330,14 +436,14 @@ pcbs:
           P9: R1
           # Right side, bottom to top.
           # P10 and P16 are NFC pins. Skip them.
-          P10: NC
-          P16: NC
+          P10: ""
+          P16: ""
           P14: R2
           P15: R3
           P18: RT
           P19: REC
           P20: REA
-          P21: NC
+          P21: ""
           # VCC, RST, GND, and RAW follow.
       display:
         what: ceoloide/display_nice_view
@@ -360,7 +466,7 @@ pcbs:
         where: power_switch
         params:
           reversible: true
-          text: PWR2
+          text: PWR
       battery_jack:
         what: ceoloide/battery_connector_jst_ph_2
         where: battery_jack

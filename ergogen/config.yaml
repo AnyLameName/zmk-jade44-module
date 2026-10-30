@@ -398,6 +398,7 @@ pcbs:
           from: "{{colrow}}"
           to: "{{row}}"
           reversible: true
+          include_thru_hole_smd_pads: true
           diode_3dmodel_filename: '${JADE44_KICAD_MODELS}/diode.step'
           diode_3dmodel_xyz_rotation: [0, 180, 0]
           diode_3dmodel_xyz_offset: [0, 0, -1.5]

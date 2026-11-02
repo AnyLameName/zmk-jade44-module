@@ -60,7 +60,8 @@ points:
     power_switch:
       anchor:
         - ref: battery_jack
-          shift: [0, -10]
+          shift: [0, -12]
+          rotate: 180
     reset_switch:
       anchor:
         - ref: matrix_C5_R3

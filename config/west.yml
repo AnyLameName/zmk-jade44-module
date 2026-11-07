@@ -4,8 +4,6 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: AnyLameName
       url-base: https://github.com/AnyLameName
-    - name: m165437 # temp
-      url-base: https://github.com/M165437
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -14,9 +12,6 @@ manifest:
     - name: nice-view-jade44
       remote: AnyLameName
       revision: main
-    - name: nice-view-gem # temp
-      remote: m165437 # temp
-      revision: main # temp
     - name: zmk-jade44-module
       remote: AnyLameName
       revision: main

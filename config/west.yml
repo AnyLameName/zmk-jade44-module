@@ -4,6 +4,8 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: AnyLameName
       url-base: https://github.com/AnyLameName
+    - name: m165437 # temp
+      url-base: https://github.com/M165437
   projects:
     - name: zmk
       remote: zmkfirmware

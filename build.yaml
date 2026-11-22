@@ -4,8 +4,5 @@
 include:
   - board: nice_nano//zmk
     shield: jade44_left nice_view_adapter nice_view
-    snippet: zmk-usb-logging
   - board: nice_nano//zmk
     shield: jade44_right nice_view_adapter nice_view
-  - board: nice_nano//zmk
-    shield: settings_reset

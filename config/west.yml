@@ -2,7 +2,7 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: zmk-jade44-module
+    - name: AnyLameName
       url-base: https://github.com/AnyLameName
   projects:
     - name: zmk
@@ -10,7 +10,10 @@ manifest:
       revision: main
       import: app/west.yml
     - name: zmk-jade44-module
-      remote: zmk-jade44-module
+      remote: AnyLameName
+      revision: main
+    - name: nice-view-jade44
+      remote: AnyLameName
       revision: main
   self:
     path: config

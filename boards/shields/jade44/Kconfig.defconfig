@@ -1,6 +1,6 @@
 if SHIELD_JADE44_LEFT
   config ZMK_KEYBOARD_NAME
-    default "Jade 44"
+    default "Jade44 v2"
 
   config ZMK_SPLIT_ROLE_CENTRAL
     default y
